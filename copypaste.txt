@@ -1,5 +1,0 @@
- boxBackground = box.getAttribute('background-color');
-        colorPercentage = boxBackground.slice(-4, -2);
-        colorPercentage = colorPercentage * 1 + 10;
-        newBackground = `rgba(0, 0, 0, ${colorPercentage}%)`;
-        box.setAttribute('background-color', newBackground);

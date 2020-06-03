@@ -5,6 +5,8 @@ let boxBackground = "";
 let newBackground = "";
 const container = document.getElementById('container');
 const resetButton = document.getElementById('reset');
+const body = document.querySelector('body');
+let mouseIsDown = false;
 
 function defineGrid() {
     totalBoxes = gridDimension * gridDimension;
@@ -16,6 +18,18 @@ function defineGrid() {
     container.style.gridTemplateColumns = `repeat(${gridDimension}, 1fr)`;
     document.querySelectorAll('.box').forEach(item => {
         item.addEventListener('mouseenter', function(e) {
+            if (mouseIsDown) return;
+            boxBackground = item.getAttribute('style').slice(-4,-1);
+            boxBackground = Math.round(10*((boxBackground * 1) + 0.1))/10;
+            if (boxBackground == 1) return;
+            item.setAttribute('style', `background-color: rgba(0, 0, 0, ${boxBackground})`);
+            console.log(boxBackground);
+
+        })
+      })
+
+      document.querySelectorAll('.box').forEach(item => {
+        item.addEventListener('click', function(e) {
             boxBackground = item.getAttribute('style').slice(-4,-1);
             boxBackground = Math.round(10*((boxBackground * 1) + 0.1))/10;
             if (boxBackground == 1) return;
@@ -38,3 +52,14 @@ function resetGrid() {
 defineGrid();
 
 resetButton.addEventListener('click', resetGrid);
+
+function noDraw() {
+    mouseIsDown = true;
+    body.addEventListener('mouseup', drawFreely);
+}
+
+function drawFreely() {
+    mouseIsDown = false;
+}
+
+body.addEventListener('mousedown', noDraw);
