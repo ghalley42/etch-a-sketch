@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(16, auto);
+    gap: 0 0;
+    width: fit-content;
+}
+
+.grid-square {
+    width: 15px;
+    height: 15px;
+    border: 0.5px solid black;
+}
+
+.filled {
+    background-color: black;
+}
